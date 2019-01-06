@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NavStyles = styled.ul`
   margin: 0;
@@ -13,6 +13,7 @@ const NavStyles = styled.ul`
     align-items: center;
     position: relative;
     text-transform: uppercase;
+    text-decoration: none;
     font-weight: 900;
     font-size: 1em;
     background: none;
@@ -23,7 +24,7 @@ const NavStyles = styled.ul`
       padding: 0 10px;
     }
     &:before {
-      content: '';
+      content: "";
       width: 2px;
       background: ${props => props.theme.lightgrey};
       height: 100%;
@@ -35,8 +36,8 @@ const NavStyles = styled.ul`
     }
     &:after {
       height: 2px;
-      background: red;
-      content: '';
+      background: ${props => props.theme.red};
+      content: "";
       width: 0;
       position: absolute;
       transform: translateX(-50%);
@@ -46,14 +47,16 @@ const NavStyles = styled.ul`
       margin-top: 2rem;
     }
     &:hover,
-    &:focus {
+    &:focus,
+    &:visited {
+      color: ${props => props.theme.black};
       outline: none;
       &:after {
         width: calc(100% - 60px);
       }
-    @media (max-width: 700px) {
+      @media (max-width: 700px) {
         width: calc(100% - 10px);
-    }
+      }
     }
   }
   @media (max-width: 1300px) {
