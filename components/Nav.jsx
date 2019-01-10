@@ -6,7 +6,7 @@ const Nav = props => {
   return (
     <NavStyles>
       <Link href="/">
-        <a>Items</a>
+        <a>Shop</a>
       </Link>
       <Link href="/sell">
         <a>Sell</a>
