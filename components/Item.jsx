@@ -13,7 +13,6 @@ class Item extends Component {
     const { item } = this.props;
     return (
       <ItemStyles>
-        {item.image && <img src={item.image} alt={item.title} />}
         <Title>
           <Link
             href={{
@@ -24,6 +23,7 @@ class Item extends Component {
             <a>{item.title}</a>
           </Link>
         </Title>
+        {item.image && <img src={item.image} alt={item.title} />}
         <PriceTag>{formatMoney(item.price)}</PriceTag>
         <p>{item.description}</p>
         <div className="buttonList">
@@ -35,7 +35,7 @@ class Item extends Component {
           >
             <a>Edit ✏️</a>
           </Link>
-          <button>Add to cart</button>
+          <button>Add to cart 🛒</button>
           <button>Delete ❎</button>
         </div>
       </ItemStyles>

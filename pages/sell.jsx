@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import CreateItem from "../components/CreateItem";
 
 class Sell extends Component {
   state = {};
   render() {
     return (
       <div>
-        <h1>Selling</h1>
+        <CreateItem />
       </div>
     );
   }
