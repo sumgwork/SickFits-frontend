@@ -5,7 +5,7 @@ import NavStyles from "./styles/NavStyles";
 const Nav = props => {
   return (
     <NavStyles>
-      <Link href="/">
+      <Link href="/items">
         <a>Shop</a>
       </Link>
       <Link href="/sell">
