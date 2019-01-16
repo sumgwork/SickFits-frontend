@@ -55,3 +55,4 @@ class Items extends Component {
 }
 
 export default Items;
+export { GET_ALL_ITEMS };
