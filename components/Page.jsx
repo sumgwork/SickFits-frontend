@@ -36,6 +36,9 @@ body {
   line-height: 2rem;
   font-family: 'radnika_next';
 }
+a.link{
+  text-decoration: none;
+}
 `;
 
 const StyledPage = styled.div`

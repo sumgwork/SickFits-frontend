@@ -39,7 +39,7 @@ const Pagination = props => {
                   query: { page: page - 1 }
                 }}
               >
-                <a className="prev" aria-disabled={page <= 1}>
+                <a className="link" aria-disabled={page <= 1}>
                   &lt; Previous
                 </a>
               </Link>
@@ -47,6 +47,7 @@ const Pagination = props => {
             <p>
               Page {page} of {pages}
             </p>
+            <p>{count} items</p>
             <p>
               <Link
                 prefetch
@@ -55,7 +56,7 @@ const Pagination = props => {
                   query: { page: page + 1 }
                 }}
               >
-                <a className="prev" aria-disabled={page >= pages}>
+                <a className="link" aria-disabled={page >= pages}>
                   Next &gt;
                 </a>
               </Link>
