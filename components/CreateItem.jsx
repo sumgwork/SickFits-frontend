@@ -31,8 +31,8 @@ const CREATE_ITEM_MUTATION = gql`
 `;
 
 const ImageHolder = styled.div`
-    text-align: center;
-  `;
+  text-align: center;
+`;
 
 class CreateItem extends Component {
   state = {
@@ -46,20 +46,19 @@ class CreateItem extends Component {
   uploadFile = async e => {
     const files = e.target.files;
     const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    data.append("file", files[0]);
+    data.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
     const res = await fetch(`${CLOUDINARY_URL}/upload`, {
-      method: 'POST',
+      method: "POST",
       body: data
     });
 
     const file = await res.json();
-    console.log(file);
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
-    })
-  }
+    });
+  };
 
   handleChange = e => {
     const { name, type, value } = e.target;
@@ -68,8 +67,6 @@ class CreateItem extends Component {
       [name]: val
     });
   };
-
-  
 
   render() {
     return (
@@ -88,11 +85,13 @@ class CreateItem extends Component {
             >
               <Error error={error} />
               <fieldset aria-busy={loading} disabled={loading}>
-              <ImageHolder>
-              {this.state.image && <img src={this.state.image} alt="image"></img>}
-              </ImageHolder>
-              
-              <label htmlFor="file">
+                <ImageHolder>
+                  {this.state.image && (
+                    <img src={this.state.image} alt="image" />
+                  )}
+                </ImageHolder>
+
+                <label htmlFor="file">
                   Image
                   <input
                     type="file"

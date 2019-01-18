@@ -45,8 +45,6 @@ class Items extends Component {
           variables={{ skip: (this.props.page - 1) * perPage }}
         >
           {({ data, error, loading }) => {
-            console.log("response data", data);
-
             if (error) return <h2>Error: {error.message}</h2>;
             if (loading) return <p>Loading</p>;
             return (
