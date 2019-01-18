@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import NavStyles from "./styles/NavStyles";
 import User from "./User";
+import Signout from "./Signout";
 
 const Nav = props => {
   return (
@@ -14,7 +15,7 @@ const Nav = props => {
           </Link>
           {!me && (
             <Link href="/signup">
-              <a>Signup</a>
+              <a>Sign In</a>
             </Link>
           )}
           {me && (
@@ -29,6 +30,7 @@ const Nav = props => {
               <Link href="/me">
                 <a>Account</a>
               </Link>
+              <Signout />
             </>
           )}
         </NavStyles>
