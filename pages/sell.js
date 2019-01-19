@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import CreateItem from "../components/CreateItem";
+import SignedIn from "../components/SignedIn";
 
 class Sell extends Component {
   state = {};
   render() {
     return (
       <div>
-        <CreateItem />
+        <SignedIn>
+          <CreateItem />
+        </SignedIn>
       </div>
     );
   }
