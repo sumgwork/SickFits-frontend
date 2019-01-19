@@ -3,19 +3,17 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Form from "./styles/Form";
 import Error from "./ErrorMessage";
-import { CURRENT_USER_QUERY } from "./User";
 
-const SIGNIN = gql`
-  mutation SIGNIN($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      email
+const REQUEST_RESET_MUTATION = gql`
+  mutation REQUEST_RESET_MUTATION($email: String!) {
+    requestReset(email: $email) {
+      message
     }
   }
 `;
 
-class Signin extends Component {
-  state = { email: "", password: "" };
+class ForgotPassword extends Component {
+  state = { email: "" };
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -25,12 +23,8 @@ class Signin extends Component {
   };
   render() {
     return (
-      <Mutation
-        mutation={SIGNIN}
-        variables={this.state}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-      >
-        {(signin, { error, loading }) => {
+      <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
+        {(requestReset, { error, loading, called }) => {
           return (
             <Form
               disabled={loading}
@@ -38,13 +32,13 @@ class Signin extends Component {
               method="post"
               onSubmit={async e => {
                 e.preventDefault();
-                let data = await signin();
-                console.log("Data", data);
-                this.setState({ email: "", password: "" });
+                await requestReset();
+                this.setState({ email: "" });
               }}
             >
-              <h2>Sign In</h2>
+              <h2>Forgot Password</h2>
               {loading && <h1>Loading</h1>}
+              {!loading && !error && called && <p>Check your email!</p>}
               <Error error={error} />
               <fieldset>
                 <label htmlFor="email">
@@ -58,20 +52,8 @@ class Signin extends Component {
                     required
                   />
                 </label>
-
-                <label htmlFor="password">
-                  Password
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    required
-                  />
-                </label>
               </fieldset>
-              <button type="submit">Sign in</button>
+              <button type="submit">Request Reset</button>
             </Form>
           );
         }}
@@ -80,4 +62,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default ForgotPassword;

@@ -45,6 +45,7 @@ class Signup extends Component {
                 this.setState({ name: "", email: "", password: "" });
               }}
             >
+              <h2>Sign Up</h2>
               {loading && <h1>Loading</h1>}
               <fieldset>
                 <label htmlFor="name">

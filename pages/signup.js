@@ -1,6 +1,7 @@
+import styled from "styled-components";
 import Signup from "../components/Signup";
 import Signin from "../components/Signin";
-import styled from "styled-components";
+import ForgotPassword from "../components/ForgotPassword";
 
 const Columns = styled.div`
   display: grid;
@@ -11,6 +12,7 @@ const signupPage = props => (
   <Columns>
     <Signup />
     <Signin />
+    <ForgotPassword />
   </Columns>
 );
 
