@@ -39,7 +39,6 @@ class Signin extends Component {
               onSubmit={async e => {
                 e.preventDefault();
                 let data = await signin();
-                console.log("Data", data);
                 this.setState({ email: "", password: "" });
               }}
             >
