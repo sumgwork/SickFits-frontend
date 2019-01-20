@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Error from "./ErrorMessage";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -50,7 +51,9 @@ class Permissions extends Component {
                 <tbody>
                   {data &&
                     data.users &&
-                    data.users.map(user => <User key={user.id} user={user} />)}
+                    data.users.map(user => (
+                      <UserPermission key={user.id} user={user} />
+                    ))}
                 </tbody>
               </Table>
             </div>
@@ -61,7 +64,32 @@ class Permissions extends Component {
   }
 }
 
-class User extends Component {
+class UserPermission extends Component {
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string,
+      email: PropTypes.string,
+      id: PropTypes.string,
+      permissions: PropTypes.array
+    }).isRequired
+  };
+  state = { permissions: this.props.user.permissions };
+  //Seeding data - want to isolate state of UserPermission, so populating it from props.
+  //Change to state will not change props properties
+
+  togglePermission(permission) {
+    let updatedPermissions = [...this.state.permissions];
+    if (updatedPermissions.includes(permission)) {
+      //remove permission
+      updatedPermissions = updatedPermissions.filter(
+        permissionItem => permissionItem !== permission
+      );
+    } else {
+      updatedPermissions.push(permission);
+    }
+    this.setState({ permissions: updatedPermissions });
+  }
+
   render() {
     const { user } = this.props;
     return (
@@ -71,7 +99,11 @@ class User extends Component {
         {possiblePermissions.map(permission => (
           <td key={permission}>
             <label htmlFor={`${user.id}-${permission}`}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={this.state.permissions.includes(permission)}
+                onChange={() => this.togglePermission(permission)}
+              />
             </label>
           </td>
         ))}
