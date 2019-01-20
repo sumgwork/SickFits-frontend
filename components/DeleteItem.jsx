@@ -29,13 +29,15 @@ class DeleteItem extends Component {
         update={this.update}
       >
         {(deleteItem, { error, loading }) => {
-          if (error) return <Error />;
+          // if (error) return <Error />;
           if (loading) return <p>loading</p>;
           return (
             <button
               onClick={() => {
                 if (confirm("Are you sure you want to delete this item?")) {
-                  deleteItem();
+                  deleteItem().catch(e => {
+                    alert(e);
+                  });
                 }
               }}
             >
