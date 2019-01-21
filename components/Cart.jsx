@@ -49,6 +49,7 @@ const Cart = props => {
                         {me.cart.map(cartItem => (
                           <CartItem
                             key={cartItem.id}
+                            cartItemId={cartItem.id}
                             item={cartItem.item}
                             count={cartItem.count}
                           />
