@@ -5,6 +5,7 @@ import Router from "next/router";
 import NProgress from "nprogress";
 import Nav from "./Nav";
 import Cart from "./Cart";
+import AutoComplete from "./Search";
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -66,7 +67,7 @@ const Header = () => {
         <Nav />
       </div>
       <div className="sub-bar">
-        <p>Search</p>
+        <AutoComplete />
       </div>
       <Cart />
     </StyledHeader>
