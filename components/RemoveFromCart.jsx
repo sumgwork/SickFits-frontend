@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { CURRENT_USER_QUERY } from "./User";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { times } from "async";
 
 const REMOVE_FROM_CART_MUTATION = gql`
   mutation REMOVE_FROM_CART_MUTATION($id: ID!) {
@@ -27,16 +28,33 @@ class RemoveFromCart extends Component {
   static propTypes = {
     cartItemId: PropTypes.string.isRequired
   };
+
+  update = (cache, payload) => {
+    const data = cache.readQuery({ query: CURRENT_USER_QUERY });
+    data.me.cart = data.me.cart.filter(
+      cartItem => cartItem.id !== payload.data.removeFromCart.id
+    );
+    cache.writeQuery({ query: CURRENT_USER_QUERY }, data);
+  };
+
   render() {
     return (
       <Mutation
+        update={this.update}
         mutation={REMOVE_FROM_CART_MUTATION}
         variables={{ id: this.props.cartItemId }}
-        refetchQueries={[
-          {
-            query: CURRENT_USER_QUERY
+        optimisticResponse={{
+          __typename: "Mutation",
+          removeFromCart: {
+            __typename: "CartItem",
+            id: this.props.cartItemId
           }
-        ]}
+        }}
+        // refetchQueries={[
+        //   {
+        //     query: CURRENT_USER_QUERY
+        //   }
+        // ]}
       >
         {(removeFromCart, { loading }) => (
           <BigButton
@@ -44,6 +62,7 @@ class RemoveFromCart extends Component {
             disabled={loading}
           >
             &times;
+            {loading && <span>&times;</span>}
           </BigButton>
         )}
       </Mutation>
