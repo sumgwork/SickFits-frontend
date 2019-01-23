@@ -10,6 +10,7 @@ import User from "./User";
 import CartItem from "./CartItem";
 import calcTotalPrice from "../lib/calcTotalPrice";
 import formatMoney from "../lib/formatMoney";
+import ChargeMoney from "./ChargeMoney";
 
 const LOCAL_STATE_QUERY = gql`
   query {
@@ -63,7 +64,10 @@ const Cart = props => {
             </main>
             <footer>
               <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-              <ShopButton>Checkout</ShopButton>
+
+              <ChargeMoney>
+                <ShopButton>Checkout</ShopButton>
+              </ChargeMoney>
             </footer>
           </CartStyles>
         );
