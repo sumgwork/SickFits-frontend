@@ -6,6 +6,7 @@ import Router from "next/router";
 import User, { CURRENT_USER_QUERY } from "./User";
 import calcTotalPrice from "../lib/calcTotalPrice";
 import { stripeKey } from "../config";
+import NProgress from "nprogress";
 
 function totalItems(cart) {
   return cart.reduce((tally, cartItem) => tally + cartItem.count, 0);
@@ -29,7 +30,7 @@ class ChargeMoney extends Component {
   state = {};
 
   onToken = async (res, createOrder) => {
-    console.log("token", res);
+    NProgress.start();
     const order = await createOrder({
       variables: {
         token: res.id
@@ -37,8 +38,11 @@ class ChargeMoney extends Component {
     }).catch(err => {
       alert("Error", err.message);
     });
-
-    console.log("ORDER --->", order);
+    console.log("ORDER --->>>", order);
+    Router.push({
+      pathname: "/order",
+      query: { id: order.data.createOrder.id }
+    });
   };
   render() {
     return (
@@ -54,7 +58,10 @@ class ChargeMoney extends Component {
                 name="SG Shop"
                 description={`Order of ${totalItems(me.cart)} items`}
                 image={
-                  me.cart.length && me.cart[0].item && me.cart[0].item.image
+                  (me.cart.length &&
+                    me.cart[0].item &&
+                    me.cart[0].item.image) ||
+                  ""
                 }
                 stripeKey={stripeKey}
                 currency="AUD"
