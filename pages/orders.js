@@ -1,8 +1,8 @@
-import Order from "../components/Order";
+import OrderList from "../components/OrderList";
 
 const OrdersPage = props => (
   <div>
-    <p>My Order History</p>
+    <OrderList />
   </div>
 );
 
