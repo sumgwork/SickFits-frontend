@@ -1,7 +1,8 @@
+import Order from "../components/Order";
+
 const OrderPage = props => (
   <div>
-    <p>Order page</p>
-    <p>Order Id : {props.query.id}</p>
+    <Order id={props.query.id} />
   </div>
 );
 
