@@ -11,7 +11,7 @@ const Nav = props => {
   return (
     <User>
       {({ data: { me } }) => (
-        <NavStyles>
+        <NavStyles data-test="nav">
           {me && <p>Welcome {me.name}!&nbsp;</p>}
           <Link href="/items">
             <a>Shop</a>
