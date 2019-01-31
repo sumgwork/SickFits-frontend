@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SingleItem /> Errors when no data is found 1`] = `null`;
-
-exports[`<SingleItem /> Errors when no data is found 2`] = `null`;
-
-exports[`<SingleItem /> Errors when no data is found 3`] = `null`;
-
 exports[`<SingleItem /> renders with proper data 1`] = `
 <h2>
   Viewing 
