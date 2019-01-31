@@ -82,6 +82,7 @@ class CreateItem extends Component {
                   query: { id: res.data.createItem.id }
                 });
               }}
+              data-test="form"
             >
               <Error error={error} />
               <fieldset aria-busy={loading} disabled={loading}>
@@ -152,3 +153,4 @@ class CreateItem extends Component {
 }
 
 export default CreateItem;
+export { CREATE_ITEM_MUTATION };
