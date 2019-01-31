@@ -36,7 +36,7 @@ describe("<AddToCart />", () => {
   it("renders and matches snapshot", async () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <AddToCart id="abc123" />
+        <AddToCart item={{ id: "abc123" }} />
       </MockedProvider>
     );
     await wait();
