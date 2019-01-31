@@ -30,7 +30,26 @@ describe("<ForgotPassword />", () => {
       </MockedProvider>
     );
     const form = wrapper.find('form[data-test="form"]');
-    console.log(form.debug());
     expect(toJSON(form)).toMatchSnapshot();
+  });
+
+  it("calls the mutation", async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <ForgotPassword />
+      </MockedProvider>
+    );
+    //simulate typing an email
+    wrapper.find("input").simulate("change", {
+      target: {
+        name: "email",
+        value: "sumit.govil@optus.com.au"
+      }
+    });
+    //submit form
+    wrapper.find("form").simulate("submit");
+    await wait();
+    wrapper.update();
+    expect(wrapper.find("p").text()).toContain("Check your email!");
   });
 });
