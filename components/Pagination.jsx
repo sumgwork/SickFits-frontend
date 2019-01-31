@@ -69,3 +69,4 @@ const Pagination = props => {
 };
 
 export default Pagination;
+export { GET_ITEM_DATA };

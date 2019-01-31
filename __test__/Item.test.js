@@ -12,21 +12,21 @@ const fakeItem = {
 };
 
 describe("<Item />", () => {
-  xit("should render the image properly", () => {
+  it("should render the image properly", () => {
     const wrapper = shallow(<Item item={fakeItem} />);
     const img = wrapper.find("img");
     expect(img.props().src).toBe(fakeItem.image);
     expect(img.props().alt).toBe(fakeItem.title);
     // console.log(wrapper.debug());
   });
-  xit("should render title and price properly", () => {
+  it("should render title and price properly", () => {
     const wrapper = shallow(<Item item={fakeItem} />);
     const PriceTag = wrapper.find("PriceTag");
     expect(PriceTag.children().text()).toBe("A$50");
     expect(wrapper.find("Title a").text()).toBe(fakeItem.title);
   });
 
-  xit("should render out the buttons properly", () => {
+  it("should render out the buttons properly", () => {
     const wrapper = shallow(<Item item={fakeItem} />);
     const buttonList = wrapper.find(".buttonList");
     expect(buttonList.children()).toHaveLength(3);

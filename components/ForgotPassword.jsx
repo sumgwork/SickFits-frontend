@@ -30,6 +30,7 @@ class ForgotPassword extends Component {
               disabled={loading}
               aria-busy={loading}
               method="post"
+              data-test="form"
               onSubmit={async e => {
                 e.preventDefault();
                 await requestReset();
@@ -63,3 +64,4 @@ class ForgotPassword extends Component {
 }
 
 export default ForgotPassword;
+export { REQUEST_RESET_MUTATION };
