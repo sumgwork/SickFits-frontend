@@ -5,8 +5,12 @@ import Form from "./styles/Form";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
 
-const SIGNUP = gql`
-  mutation SIGNUP($email: String!, $name: String!, $password: String!) {
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $name: String!
+    $password: String!
+  ) {
     signup(email: $email, name: $name, password: $password) {
       id
       name
@@ -27,7 +31,7 @@ class Signup extends Component {
   render() {
     return (
       <Mutation
-        mutation={SIGNUP}
+        mutation={SIGNUP_MUTATION}
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]} //For calling this query after current mutation is successfully completed
       >
@@ -94,3 +98,4 @@ class Signup extends Component {
 }
 
 export default Signup;
+export { SIGNUP_MUTATION };

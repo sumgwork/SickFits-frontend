@@ -21,6 +21,9 @@ const CURRENT_USER_QUERY = gql`
           title
         }
       }
+      orders {
+        id
+      }
     }
   }
 `;
