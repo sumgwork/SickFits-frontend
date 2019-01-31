@@ -2,44 +2,46 @@ import { mount } from "enzyme";
 // import { ApolloConsumer } from "react-apollo";
 import wait from "waait";
 import toJSON from "enzyme-to-json";
-import Cart from "../components/Cart";
-import { LOCAL_STATE_QUERY, TOGGLE_CART_MUTATION } from "../components/Cart";
+import AddToCart, { ADD_TO_CART_MUTATION } from "../components/AddToCart";
 import User, { CURRENT_USER_QUERY } from "../components/User";
 import { MockedProvider } from "react-apollo/test-utils";
 import { fakeCartItem, fakeUser } from "../lib/testUtils";
 
 const mocks = [
   {
-    request: {
-      query: CURRENT_USER_QUERY
-    },
+    request: { query: CURRENT_USER_QUERY },
     result: {
       data: {
         me: {
           ...fakeUser(),
-          cart: [fakeCartItem()]
+          cart: []
         }
       }
     }
   },
   {
-    request: { query: LOCAL_STATE_QUERY },
-    response: {
-      data: { cartOpen: true }
+    request: { query: ADD_TO_CART_MUTATION, variables: { id: "abc123" } },
+    result: {
+      data: {
+        addToCart: {
+          ...fakeCartItem(),
+          count: 1
+        }
+      }
     }
   }
 ];
 
-describe("<Cart />", () => {
-  it("renders properly and matches snapshot", async () => {
+describe("<AddToCart />", () => {
+  it("renders and matches snapshot", async () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <Cart />
+        <AddToCart id="abc123" />
       </MockedProvider>
     );
     await wait();
     wrapper.update();
-    expect(toJSON(wrapper.find("header"))).toMatchSnapshot();
-    expect(wrapper.find("CartItem")).toHaveLength(1);
+
+    expect(toJSON(wrapper.find("button"))).toMatchSnapshot();
   });
 });

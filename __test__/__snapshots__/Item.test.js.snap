@@ -46,16 +46,7 @@ exports[`<Item /> renders and matches the snapshot 1`] = `
       </a>
     </Link>
     <AddToCart
-      item={
-        Object {
-          "description": "This item is cool!",
-          "id": "ABC",
-          "image": "dog.jpg",
-          "largeImage": "largeDog.jpg",
-          "price": 5000,
-          "title": "A cool item",
-        }
-      }
+      id="ABC"
     />
     <DeleteItem
       id="ABC"

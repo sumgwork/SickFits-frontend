@@ -17,7 +17,7 @@ const AddToCart = props => {
   return (
     <Mutation
       mutation={ADD_TO_CART_MUTATION}
-      variables={{ id: props.item.id }}
+      variables={{ id: props.id }}
       refetchQueries={[{ query: CURRENT_USER_QUERY }]}
     >
       {(addToCart, { loading }) => (
@@ -30,7 +30,7 @@ const AddToCart = props => {
 };
 
 AddToCart.propTypes = {
-  item: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired
 };
 
 export default AddToCart;
