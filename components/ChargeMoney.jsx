@@ -38,7 +38,6 @@ class ChargeMoney extends Component {
     }).catch(err => {
       alert("Error", err.message);
     });
-    console.log("ORDER --->>>", order);
     Router.push({
       pathname: "/order",
       query: { id: order.data.createOrder.id }
@@ -47,35 +46,39 @@ class ChargeMoney extends Component {
   render() {
     return (
       <User>
-        {({ data: { me } }) => (
-          <Mutation
-            mutation={CREATE_ORDER_MUTATION}
-            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-          >
-            {createOrder => (
-              <StripeCheckout
-                amount={calcTotalPrice(me.cart)}
-                name="SG Shop"
-                description={`Order of ${totalItems(me.cart)} items`}
-                image={
-                  (me.cart.length &&
-                    me.cart[0].item &&
-                    me.cart[0].item.image) ||
-                  ""
-                }
-                stripeKey={stripeKey}
-                currency="AUD"
-                email={me.email}
-                token={res => this.onToken(res, createOrder)}
-              >
-                {this.props.children}
-              </StripeCheckout>
-            )}
-          </Mutation>
-        )}
+        {({ data: { me }, loading }) => {
+          if (loading) return null;
+          return (
+            <Mutation
+              mutation={CREATE_ORDER_MUTATION}
+              refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+            >
+              {createOrder => (
+                <StripeCheckout
+                  amount={calcTotalPrice(me.cart)}
+                  name="SG Shop"
+                  description={`Order of ${totalItems(me.cart)} items`}
+                  image={
+                    (me.cart.length &&
+                      me.cart[0].item &&
+                      me.cart[0].item.image) ||
+                    ""
+                  }
+                  stripeKey={stripeKey}
+                  currency="AUD"
+                  email={me.email}
+                  token={res => this.onToken(res, createOrder)}
+                >
+                  {this.props.children}
+                </StripeCheckout>
+              )}
+            </Mutation>
+          );
+        }}
       </User>
     );
   }
 }
 
 export default ChargeMoney;
+export { CREATE_ORDER_MUTATION };
