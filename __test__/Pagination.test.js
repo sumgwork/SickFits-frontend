@@ -1,10 +1,7 @@
 import { mount } from "enzyme";
-import wait from "waait";
-import toJSON from "enzyme-to-json";
 import Pagination from "../components/Pagination";
 import { GET_ITEM_DATA } from "../components/Pagination";
 import { MockedProvider } from "react-apollo/test-utils";
-import Router from "next/router";
 
 // Router.router = {
 //     push:

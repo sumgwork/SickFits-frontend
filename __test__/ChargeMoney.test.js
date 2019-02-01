@@ -7,7 +7,6 @@ import ChargeMoney, { CREATE_ORDER_MUTATION } from "../components/ChargeMoney";
 import { CURRENT_USER_QUERY } from "../components/User";
 import { MockedProvider } from "react-apollo/test-utils";
 import { fakeCartItem, fakeUser } from "../lib/testUtils";
-import { ApolloConsumer } from "react-apollo";
 
 Router.router = { push() {} };
 

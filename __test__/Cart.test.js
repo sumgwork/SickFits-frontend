@@ -4,7 +4,7 @@ import wait from "waait";
 import toJSON from "enzyme-to-json";
 import Cart from "../components/Cart";
 import { LOCAL_STATE_QUERY, TOGGLE_CART_MUTATION } from "../components/Cart";
-import User, { CURRENT_USER_QUERY } from "../components/User";
+import { CURRENT_USER_QUERY } from "../components/User";
 import { MockedProvider } from "react-apollo/test-utils";
 import { fakeCartItem, fakeUser } from "../lib/testUtils";
 

@@ -1,5 +1,3 @@
-import { resolve, reject } from "any-promise";
-
 function Person(name, foods) {
   this.name = name;
   this.foods = foods;
